@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { Zap, MessageCircle, ShieldCheck } from "lucide-react";
 import Header from "@/components/Header";
 import ProductGrid from "@/components/ProductGrid";
 import Cart from "@/components/Cart";
@@ -17,42 +18,48 @@ export default function Home() {
   }
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-[#FAFAF8]">
       <Header onCartOpen={() => setCartOpen(true)} />
 
-      {/* Hero banner */}
-      <div className="bg-gradient-to-br from-orange-500 via-orange-400 to-amber-400 text-white">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-16">
-          <p className="text-orange-100 font-medium text-sm uppercase tracking-widest mb-2">
-            Welcome to
+      {/* Hero */}
+      <section
+        className="bg-[#1C1917] relative"
+        style={{ clipPath: "polygon(0 0, 100% 0, 100% 88%, 0 100%)" }}
+      >
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 pt-16 sm:pt-24 pb-28 sm:pb-36">
+          <p className="text-orange-400 text-xs font-semibold uppercase tracking-[0.2em] mb-4">
+            Order in seconds
           </p>
-          <h1 className="text-4xl sm:text-5xl font-extrabold leading-tight tracking-tight">
-            {shopConfig.shopName}
+          <h1 className="font-['Playfair_Display'] text-4xl sm:text-6xl lg:text-7xl font-bold italic text-[#F7F3EE] leading-[1.05] mb-4">
+            {shopConfig.shopName}.
           </h1>
-          <p className="text-orange-100 text-lg mt-3 max-w-md">
-            {shopConfig.tagline}
+          <p className="text-stone-400 text-base sm:text-xl max-w-lg leading-relaxed mb-10">
+            Fresh food, delivered fast — just send us a WhatsApp message and we&apos;ll handle the rest.
           </p>
-          <div className="mt-6 flex flex-wrap gap-3 text-sm font-medium">
-            <span className="bg-white/20 backdrop-blur-sm px-4 py-1.5 rounded-full border border-white/30">
-              🚀 Fast Delivery
-            </span>
-            <span className="bg-white/20 backdrop-blur-sm px-4 py-1.5 rounded-full border border-white/30">
-              💬 Order via WhatsApp
-            </span>
-            <span className="bg-white/20 backdrop-blur-sm px-4 py-1.5 rounded-full border border-white/30">
-              ✅ No App Needed
-            </span>
+          <div className="flex flex-wrap gap-3">
+            {[
+              { icon: Zap, label: "Fast Delivery" },
+              { icon: MessageCircle, label: "Order via WhatsApp" },
+              { icon: ShieldCheck, label: "No App Needed" },
+            ].map(({ icon: Icon, label }) => (
+              <span
+                key={label}
+                className="flex items-center gap-2 bg-stone-800 text-stone-300 rounded-full px-4 py-2 text-sm font-medium"
+              >
+                <Icon className="w-4 h-4 text-orange-400" />
+                {label}
+              </span>
+            ))}
           </div>
         </div>
-      </div>
+      </section>
 
       {/* Product catalog */}
-      <ProductGrid />
+      <div className="-mt-6 relative z-10">
+        <ProductGrid />
+      </div>
 
-      {/* Cart drawer */}
       <Cart open={cartOpen} onClose={() => setCartOpen(false)} onCheckout={openCheckout} />
-
-      {/* Checkout modal */}
       <CheckoutModal open={checkoutOpen} onClose={() => setCheckoutOpen(false)} />
     </div>
   );

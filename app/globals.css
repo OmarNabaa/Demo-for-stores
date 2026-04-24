@@ -2,22 +2,52 @@
 @tailwind components;
 @tailwind utilities;
 
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap');
 
-/* Hide scrollbar for category filter on mobile */
-.scrollbar-hide::-webkit-scrollbar {
-  display: none;
-}
-.scrollbar-hide {
-  -ms-overflow-style: none;
-  scrollbar-width: none;
-}
+.scrollbar-hide::-webkit-scrollbar { display: none; }
+.scrollbar-hide { -ms-overflow-style: none; scrollbar-width: none; }
 
-html {
-  scroll-behavior: smooth;
-}
+html { scroll-behavior: smooth; font-size: 16px; }
 
 body {
+  font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
+  background: #FAFAF8;
+  color: #1C1917;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  min-height: 100vh;
 }
+
+button { transition: background 0.2s, color 0.2s, box-shadow 0.2s, transform 0.15s; }
+
+.card {
+  @apply rounded-2xl bg-[#F7F3EE] transition-all duration-300;
+}
+.card-hover:hover {
+  @apply shadow-xl -translate-y-0.5;
+}
+
+*:focus-visible {
+  outline: 2px solid #EA580C;
+  outline-offset: 2px;
+}
+
+a { color: #EA580C; text-decoration: none; }
+a:hover { color: #B45309; }
+
+.modal-enter-active {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+  transition: opacity 0.3s, transform 0.3s;
+}
+.modal-exit-active {
+  opacity: 0;
+  transform: translateY(40px) scale(0.98);
+  transition: opacity 0.2s, transform 0.2s;
+}
+
+@keyframes fadeSlideUp {
+  from { opacity: 0; transform: translateY(16px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.animate-fade-slide-up { animation: fadeSlideUp 0.5s ease both; }

@@ -20,9 +20,9 @@ export default function ProductCard({ product }) {
   }
 
   return (
-    <div className="group bg-white rounded-2xl overflow-hidden border border-gray-100 shadow-sm hover:shadow-lg hover:-translate-y-0.5 transition-all duration-300">
+    <div className="group overflow-hidden rounded-2xl bg-[#F7F3EE] hover:shadow-xl transition-all duration-300 cursor-pointer">
       {/* Image */}
-      <div className="relative h-44 sm:h-48 overflow-hidden bg-gray-100">
+      <div className="relative h-48 overflow-hidden">
         <Image
           src={product.image}
           alt={product.name}
@@ -31,32 +31,32 @@ export default function ProductCard({ product }) {
           className="object-cover group-hover:scale-105 transition-transform duration-500"
         />
         {cartItem && (
-          <div className="absolute top-2 right-2 bg-orange-500 text-white text-xs font-bold px-2 py-0.5 rounded-full shadow">
+          <div className="absolute top-2 right-2 bg-[#1C1917] text-orange-400 text-xs font-bold px-2.5 py-1 rounded-full shadow-md">
             {cartItem.qty} in cart
           </div>
         )}
       </div>
 
       {/* Body */}
-      <div className="p-4 flex flex-col gap-3">
-        <div className="flex-1">
-          <h3 className="font-bold text-gray-900 text-base leading-snug">{product.name}</h3>
-          <p className="text-gray-500 text-sm mt-1 line-clamp-2 leading-relaxed">
-            {product.description}
-          </p>
-        </div>
+      <div className="p-5">
+        <h3 className="font-['Playfair_Display'] font-semibold text-stone-900 text-lg leading-snug mb-1">
+          {product.name}
+        </h3>
+        <p className="text-stone-500 text-sm leading-relaxed line-clamp-2 mb-4">
+          {product.description}
+        </p>
 
         <div className="flex items-center justify-between">
-          <span className="text-orange-500 font-bold text-lg">
+          <span className="text-2xl font-bold text-[#1C1917]">
             {symbol}{product.price.toFixed(2)}
           </span>
 
           <button
             onClick={handleAdd}
-            className={`flex items-center gap-1.5 px-3.5 py-2 rounded-xl text-sm font-semibold transition-all duration-200 active:scale-95 ${
+            className={`flex items-center gap-1.5 px-4 py-2.5 min-h-[44px] rounded-xl text-sm font-semibold transition-colors duration-200 active:scale-95 cursor-pointer focus-visible:ring-2 focus-visible:ring-orange-500 ${
               added
-                ? "bg-green-500 text-white"
-                : "bg-orange-500 hover:bg-orange-600 text-white shadow-sm shadow-orange-200"
+                ? "bg-emerald-600 text-white"
+                : "bg-[#EA580C] hover:bg-orange-700 text-white"
             }`}
           >
             {added ? (

@@ -14,7 +14,7 @@ export const viewport = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <body className="bg-gray-50 font-sans antialiased">
+      <body className="bg-[#FAFAF8] antialiased min-h-screen">
         <CartProvider>{children}</CartProvider>
       </body>
     </html>
